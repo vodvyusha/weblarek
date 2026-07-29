@@ -15,6 +15,7 @@ console.log('Массив товаров из каталога: ', productsModel
 console.log('Один товар из каталога: ', productsModel.getProduct(apiProducts.items[0].id));
 console.log('Несуществующий товар: ', productsModel.getProduct('1234560'));
 productsModel.setPreview(apiProducts.items[0]);
+console.log('Выбранный товар: ', productsModel.getPreview());
 console.log('Текущее состояние ProductCatalog: ', productsModel);
 
 // ===== Buyer =====
@@ -67,4 +68,7 @@ webLarekApi.getProducts().then((data) => {
     "Каталог товаров, полученный с сервера:",
     productsModel.getProducts()
   );
+})
+.catch ((error) => {
+  console.log('Ошибка при получении товаров: ', error);
 });

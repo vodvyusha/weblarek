@@ -1,7 +1,7 @@
-import { IBuyer, TPayment } from "../../types";
+import { IBuyer, TPayment, TBuyerErrors } from "../../types";
 
 export class Buyer {
-  protected payment: TPayment = null;
+  protected payment: TPayment | null = null;
   protected address = "";
   protected phone = "";
   protected email = "";
@@ -40,8 +40,8 @@ export class Buyer {
     this.email = "";
   }
 
-  validate(): Partial<Record<keyof IBuyer, string>> {
-    const errors: Partial<Record<keyof IBuyer, string>> = {};
+  validate(): TBuyerErrors {
+    const errors: TBuyerErrors = {};
 
     if (!this.payment) {
       errors.payment = "Выберите способ оплаты";

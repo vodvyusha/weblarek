@@ -19,4 +19,8 @@ export class ProductCatalog {
   setPreview(product: IProduct): void {
     this.preview = product;
   }
+
+  getPreview(): IProduct | null {
+    return this.preview;
+  }
 }
