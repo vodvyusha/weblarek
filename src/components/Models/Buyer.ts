@@ -1,5 +1,5 @@
 import { IBuyer, TPayment, TBuyerErrors } from "../../types";
-import { IEvents } from '../base/Events';
+import { IEvents } from "../base/Events";
 
 export class Buyer {
   protected payment: TPayment | null = null;
@@ -26,7 +26,7 @@ export class Buyer {
       this.email = data.email;
     }
 
-    this.events.emit('buyer:change');
+    this.events.emit("buyer:change");
   }
 
   getData(): IBuyer {
@@ -44,7 +44,7 @@ export class Buyer {
     this.phone = "";
     this.email = "";
 
-    this.events.emit('buyer:change');
+    this.events.emit("buyer:change");
   }
 
   validate(): TBuyerErrors {

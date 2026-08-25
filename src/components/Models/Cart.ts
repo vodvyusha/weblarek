@@ -1,5 +1,5 @@
 import { IProduct } from "../../types";
-import { IEvents } from '../base/Events';
+import { IEvents } from "../base/Events";
 
 export class Cart {
   protected items: IProduct[] = [];
@@ -13,19 +13,19 @@ export class Cart {
   addProduct(product: IProduct): void {
     this.items.push(product);
 
-    this.events.emit('cart:change');
+    this.events.emit("cart:change");
   }
 
   removeProduct(product: IProduct): void {
-    this.items = this.items.filter(item => item.id !== product.id);
+    this.items = this.items.filter((item) => item.id !== product.id);
 
-    this.events.emit('cart:change');
+    this.events.emit("cart:change");
   }
 
   clear(): void {
     this.items = [];
 
-    this.events.emit('cart:change');
+    this.events.emit("cart:change");
   }
 
   getTotal(): number {
@@ -37,6 +37,6 @@ export class Cart {
   }
 
   hasProduct(id: string): boolean {
-    return this.items.some(item => item.id === id);
+    return this.items.some((item) => item.id === id);
   }
 }

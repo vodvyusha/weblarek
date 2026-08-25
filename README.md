@@ -118,7 +118,7 @@ interface IProduct {
 Покупатель:
 ```ts
 interface IBuyer {
-  payment: TPayment;
+  payment: TPayment | null;
   email: string;
   phone: string;
   address: string;
@@ -262,13 +262,13 @@ interface IBuyer {
 
 Методы класса:
 `set title(value: string)` – устанавливает название товара.
-`set price(value: number)` – устанавливает цену товара.
+`set price(value: number | null)` – устанавливает цену товара.
 
 #### Класс CatalogCard
 Наследуется от Card. Отвечает за отображение карточки товара в каталоге магазина. Позволяет пользователю выбрать товар для просмотра подробной информации.
 
 Конструктор:
-`constructor(container: HTMLElement, onClick: () => void)` — принимает корневой DOM-элемент карточки товара и onDelete: () => void – обработчик, вызываемый при нажатии на карточку товара.
+`constructor(container: HTMLElement, onClick: () => void)` — принимает корневой DOM-элемент карточки товара и onClick: () => void – обработчик, вызываемый при нажатии на карточку товара.
 
 Поля класса:
 `categoryElement: HTMLElement` – элемент отображения категории.
@@ -285,8 +285,8 @@ interface IBuyer {
 `constructor(container: HTMLElement, onClick: () => void)` — принимает корневой DOM-элемент карточки товара и callback onClick, который вызывается при нажатии на кнопку добавления товара в корзину.
 
 Поля класса:
-`imageElement(value: string)` – устанавливает изображение товара.
-`categoryElement(value: string)` – устанавливает категорию товара.
+`imageElement: HTMLImageElement` – устанавливает изображение товара.
+`categoryElement: HTMLElement` – устанавливает категорию товара.
 `descriptionElement: HTMLElement` – элемент, отображающий описание товара.
 `buttonElement: HTMLButtonElement` – кнопка добавления товара в корзину.
 
@@ -324,6 +324,7 @@ interface IBuyer {
 Методы класса:
 `set valid(value: boolean)` – изменяет состояние формы в зависимости от её валидности.
 `set errors(value: string)` – отображает сообщение об ошибке.
+`reset()` – очищает поля формы и сообщения об ошибках, возвращая форму в начальное состояние.
 
 #### Класс OrderForm
 Наследуется от Form. Отвечает за отображение формы оформления заказа. Позволяет пользователю выбрать способ оплаты и указать адрес доставки.
@@ -383,9 +384,6 @@ interface IBuyer {
 
 #### PreviewCard
 `card:add-to-basket` - генерируется при нажатии на кнопку добавления товара в корзину. В текущей реализации добавление товара выполняется через callback onClick, переданный в конструктор PreviewCard.
-
-#### Basket
-`basket:order` - генерируется при нажатии на кнопку «Оформить» в корзине.
 
 #### BasketCard
 `basket:item-delete` – генерируется при нажатии на кнопку удаления товара из корзины. Сам BasketCard получает callback onDelete через конструктор. Callback передаётся из Presenter и внутри него генерируется событие basket:item-delete.

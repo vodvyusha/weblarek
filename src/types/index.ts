@@ -1,13 +1,17 @@
-export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
+export type ApiPostMethods = "POST" | "PUT" | "DELETE";
 
 export interface IApi {
-    get<T extends object>(uri: string): Promise<T>;
-    post<T extends object>(uri: string, data: object, method?: ApiPostMethods): Promise<T>;
+  get<T extends object>(uri: string): Promise<T>;
+  post<T extends object>(
+    uri: string,
+    data: object,
+    method?: ApiPostMethods,
+  ): Promise<T>;
 }
 
 export interface IProductsResponse {
-    total: number;
-    items: IProduct[];
+  total: number;
+  items: IProduct[];
 }
 
 export interface IOrder extends IBuyer {
@@ -25,20 +29,20 @@ export type TPayment = "card" | "cash";
 export type TBuyerErrors = Partial<Record<keyof IBuyer, string>>;
 
 export type TFormSubmit = {
-  form: 'order' | 'contacts';
+  form: "order" | "contacts";
 };
 
 export type TOrderChange = {
-  field: 'address';
+  field: "address";
   value: string;
 };
 
 export type TContactsChange = {
-  field: 'email' | 'phone';
+  field: "email" | "phone";
   value: string;
 };
 
-import { TCategory } from '../utils/constants';
+import { TCategory } from "../utils/constants";
 
 export interface IProduct {
   id: string;

@@ -1,30 +1,36 @@
-import { ensureElement } from '../../utils/utils';
-import { Component } from '../base/Component';
-import { categoryMap, TCategory } from '../../utils/constants';
+import { ensureElement } from "../../utils/utils";
+import { Component } from "../base/Component";
+import { categoryMap, TCategory } from "../../utils/constants";
 
 interface ICard {
   title: string;
   price: number | null;
 }
 
-export class Card<T extends ICard> extends Component<T>{
+export class Card<T extends ICard> extends Component<T> {
   protected titleElement: HTMLElement;
   protected priceElement: HTMLElement;
 
   constructor(container: HTMLElement) {
     super(container);
 
-    this.titleElement = ensureElement<HTMLElement> ('.card__title', this.container);
-    this.priceElement = ensureElement<HTMLElement> ('.card__price', this.container);
+    this.titleElement = ensureElement<HTMLElement>(
+      ".card__title",
+      this.container,
+    );
+    this.priceElement = ensureElement<HTMLElement>(
+      ".card__price",
+      this.container,
+    );
   }
-  
+
   set title(value: string) {
     this.titleElement.textContent = value;
   }
 
   set price(value: number | null) {
     this.priceElement.textContent =
-      value === null ? 'Бесценно' : `${value} синапсов`;
+      value === null ? "Бесценно" : `${value} синапсов`;
   }
 }
 
@@ -40,10 +46,16 @@ export class CatalogCard extends Card<ICatalogCard> {
   constructor(container: HTMLElement, onClick: () => void) {
     super(container);
 
-    this.categoryElement = ensureElement<HTMLElement> ('.card__category', this.container);
-    this.imageElement = ensureElement<HTMLImageElement> ('.card__image', this.container);
+    this.categoryElement = ensureElement<HTMLElement>(
+      ".card__category",
+      this.container,
+    );
+    this.imageElement = ensureElement<HTMLImageElement>(
+      ".card__image",
+      this.container,
+    );
 
-    this.container.addEventListener('click', onClick);
+    this.container.addEventListener("click", onClick);
   }
 
   set category(value: TCategory) {
@@ -71,12 +83,24 @@ export class PreviewCard extends Card<IPreviewCard> {
   constructor(container: HTMLElement, onClick: () => void) {
     super(container);
 
-    this.categoryElement = ensureElement<HTMLElement> ('.card__category', this.container);
-    this.imageElement = ensureElement<HTMLImageElement> ('.card__image', this.container);
-    this.descriptionElement = ensureElement<HTMLElement> ('.card__text', this.container);
-    this.buttonElement = ensureElement<HTMLButtonElement> ('.card__button', this.container);
+    this.categoryElement = ensureElement<HTMLElement>(
+      ".card__category",
+      this.container,
+    );
+    this.imageElement = ensureElement<HTMLImageElement>(
+      ".card__image",
+      this.container,
+    );
+    this.descriptionElement = ensureElement<HTMLElement>(
+      ".card__text",
+      this.container,
+    );
+    this.buttonElement = ensureElement<HTMLButtonElement>(
+      ".card__button",
+      this.container,
+    );
 
-    this.buttonElement.addEventListener('click', onClick);
+    this.buttonElement.addEventListener("click", onClick);
   }
 
   set category(value: TCategory) {
@@ -112,10 +136,16 @@ export class BasketCard extends Card<IBasketCard> {
   constructor(container: HTMLElement, onDelete: () => void) {
     super(container);
 
-    this.indexElement = ensureElement<HTMLElement> ('.basket__item-index', this.container);
-    this.deleteButtonElement = ensureElement<HTMLButtonElement> ('.basket__item-delete', this.container);
+    this.indexElement = ensureElement<HTMLElement>(
+      ".basket__item-index",
+      this.container,
+    );
+    this.deleteButtonElement = ensureElement<HTMLButtonElement>(
+      ".basket__item-delete",
+      this.container,
+    );
 
-    this.deleteButtonElement.addEventListener('click', onDelete);
+    this.deleteButtonElement.addEventListener("click", onDelete);
   }
 
   set index(value: number) {
