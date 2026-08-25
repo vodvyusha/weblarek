@@ -24,12 +24,28 @@ export type TPayment = "card" | "cash";
 
 export type TBuyerErrors = Partial<Record<keyof IBuyer, string>>;
 
+export type TFormSubmit = {
+  form: 'order' | 'contacts';
+};
+
+export type TOrderChange = {
+  field: 'address';
+  value: string;
+};
+
+export type TContactsChange = {
+  field: 'email' | 'phone';
+  value: string;
+};
+
+import { TCategory } from '../utils/constants';
+
 export interface IProduct {
   id: string;
   description: string;
   image: string;
   title: string;
-  category: string;
+  category: TCategory;
   price: number | null;
 }
 
